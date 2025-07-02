@@ -1,5 +1,6 @@
 package org.springbootcrud.controller;
 
+import org.springbootcrud.dto.UserDto;
 import org.springbootcrud.model.User;
 import org.springbootcrud.service.UserService;
 import org.springframework.http.ResponseEntity;
@@ -17,8 +18,8 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<User> createUser(@RequestBody User user) {
-        return ResponseEntity.ok(service.createUser(user));
+    public ResponseEntity<UserDto> createUser(@RequestBody UserDto userdto) {
+        return ResponseEntity.ok(service.createUser(userdto));
     }
 
     @GetMapping

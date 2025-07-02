@@ -1,5 +1,6 @@
 package org.springbootcrud.service;
 
+import org.springbootcrud.dto.UserDto;
 import org.springbootcrud.model.User;
 import org.springbootcrud.repository.UserRepository;
 import org.springframework.stereotype.Service;
@@ -15,8 +16,20 @@ public class UserService {
         this.repository = repository;
     }
 
-    public User createUser(User user) {
-        return repository.save(user);
+    public UserDto createUser(UserDto userDto) {
+
+
+        User user = new User();
+        user.setEmail(userDto.getEmail());
+        user.setName(userDto.getName());
+
+        User save = repository.save(user);
+
+        userDto.setId(save.getId());
+        userDto.setEmail(save.getEmail());
+        userDto.setName(save.getName());
+
+        return userDto;
     }
 
     public List<User> getAllUsers() {
